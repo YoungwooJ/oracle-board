@@ -38,7 +38,7 @@
 				$('#loginBtn').click(function(){
 					if(allCk == false){
     					$('#memberId').focus();
-    					return;
+    					return false;
     				}
 					$('#loginForm').submit();
 				});

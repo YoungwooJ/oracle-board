@@ -44,7 +44,7 @@ public class BoardListController extends HttpServlet {
 		String search = request.getParameter("search");
 		
 		Member member = new Member();
-		member.setMemberId("goodee");
+		member.setMemberId(loginMember.getMemberId());
 		
 		this.boardService = new BoardService();
 		ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, search);

@@ -5,6 +5,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>boardOne.jsp</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<!-- 자바스크립트로 유효성 확인 -->
+		<script>
+			$(document).ready(function(){ // 페이지가 로드되고 나면 실행
+				// 게시글 삭제 버튼 클릭시 확인 알람
+				$('#deleteBtn').click(function(){
+					if(!confirm("게시글을 삭제하시겠습니까?")){
+    					return false;
+					} else {
+						$('#deleteBtn').submit();
+					}
+				});
+			});
+		</script>
 	</head>
 <body>
 	<h1>게시글 내용</h1>
@@ -36,7 +50,7 @@
 	</table>
 	<div>
 		<a href="${pageContext.request.contextPath}/board/modifyBoard?boardNo=${board.boardNo}">수정</a>
-		<a href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${board.boardNo}">삭제</a>
+		<a type="button" id="deleteBtn" href="${pageContext.request.contextPath}/board/removeBoard?boardNo=${board.boardNo}">삭제</a>
 	</div>
 </body>
 </html>

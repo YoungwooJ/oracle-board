@@ -27,17 +27,13 @@
 				$('#deleteBtn').click(function(){
 					if(allCk == false){
     					$('#memberPw').focus();
-    					return;
+    					return false;
     				}
-					let value;
-					value=confirm("회원탈퇴하시겠습니까?")
-					if(value){
-						console.log('value: ', value);
-						$('#deleteForm').submit();
-					} else {
-						console.log('value: ', value);
+					if(!confirm("회원탈퇴하시면 게시글도 전부 삭제됩니다.\n회원탈퇴하시겠습니까?")){
 						$('#memberPw').focus();
-    					return;
+    					return false;
+					} else {
+						$('#deleteForm').submit();
 					}
 				});
 			});

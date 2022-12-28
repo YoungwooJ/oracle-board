@@ -30,17 +30,17 @@
 						$('#memberPw').focus();
 					} else {
 						$('#msg').text('');
-						$('#updateBtn').focus();
+						$('#modifyBtn').focus();
 						allCk = true;
 					}
 				});
 				
-				$('#updateBtn').click(function(){
+				$('#modifyBtn').click(function(){
 					if(allCk == false){
     					$('#memberPw').focus();
-    					return;
+    					return false;
     				}
-					$('#updateForm').submit();
+					$('#modifyForm').submit();
 				});
 			});
 		</script>
@@ -49,7 +49,7 @@
 	<h1>내 정보</h1>
 	<div id="msg" style="color:red">
 	</div>
-	<form method="post" action="${pageContext.request.contextPath}/member/modifyMember" id="updateForm">
+	<form method="post" action="${pageContext.request.contextPath}/member/modifyMember" id="modifyForm">
 	<table border="1">
 		<tr>
 			<th>아이디</th>
@@ -82,7 +82,7 @@
 			</td>
 		</tr>
 	</table>
-	<button type="submit" id="updateBtn">수정</button>
+	<button type="submit" id="modifyBtn">수정</button>
 	</form>
 </body>
 </html>

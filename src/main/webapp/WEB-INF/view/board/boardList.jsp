@@ -10,7 +10,7 @@
 	$(document).ready(function(){
 		$('#rowPerPage').change(function(){
 			$('#pageForm').submit();
-			alert('change');
+			alert('페이지당 게시글 개수가 바뀌었습니다.');
 		});
 	});
 </script>
