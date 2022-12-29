@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +33,13 @@ public class RemoveMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/member/login");
 			return;
 		}
+		
+		request.setCharacterEncoding("UTF-8");
+		String msg = null;
+		if(request.getParameter("msg") != null) {
+			msg = request.getParameter("msg");
+		}
+		request.setAttribute("msg", msg);
 		
 		Member member = new Member();
 		member.setMemberId(loginMember.getMemberId());
@@ -82,14 +91,23 @@ public class RemoveMemberController extends HttpServlet {
 		MemberService memberService = new MemberService();
 	    int row = memberService.removeBoard(member);
 	    if(row == 1){
-	    	System.out.println("회원탈퇴 성공");
+	    	System.out.println("회원탈퇴 성공");    	
+	    	
+	    	response.setContentType("text/html; charset=UTF-8");
+	    	
+	    	PrintWriter out = response.getWriter();
+	    	 
+	    	out.println("<script>alert('회원탈퇴하였습니다.'); location.href='logout';</script>");
+	    	 
+	    	out.flush();
 	    } else {
 	    	System.out.println("회원탈퇴 실패");
-	    	response.sendRedirect(request.getContextPath()+"/WEB-INF/view/member/removeMember.jsp");
+	    	
+	    	String msg = null;
+	    	msg = URLEncoder.encode("비밀번호를 확인하세요.", "utf-8");
+			
+			// View
+	    	response.sendRedirect(request.getContextPath()+"/member/removeMember?msg="+msg);
 	    }
-		
-		// 3. V
-		response.sendRedirect(request.getContextPath()+"/member/logout");
 	}
-
 }

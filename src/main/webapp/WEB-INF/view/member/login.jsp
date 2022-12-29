@@ -92,7 +92,7 @@
               <form class="bg-white rounded shadow-5-strong p-5" method="post" action="${pageContext.request.contextPath}/member/login" id="loginForm">
                 <h4>로그인</h4>
 				<div>
-					<span id="msg" style="color:red;"></span>
+					<span id="msg" style="color:red;">${msg}</span>
 				</div>
                 <!-- ID input -->
                 <div class="form-outline mb-4">             

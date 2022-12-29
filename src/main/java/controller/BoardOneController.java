@@ -32,6 +32,13 @@ public class BoardOneController extends HttpServlet {
 			return;
 		}
 		
+		request.setCharacterEncoding("UTF-8");
+		String msg = null;
+		if(request.getParameter("msg") != null) {
+			msg = request.getParameter("msg");
+		}
+		request.setAttribute("msg", msg);
+		
 		int boardNo = 0;
 		
 		if(request.getParameter("boardNo") != null){

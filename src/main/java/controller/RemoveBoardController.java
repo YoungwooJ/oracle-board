@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,20 +57,31 @@ public class RemoveBoardController extends HttpServlet {
 			int row = boardService.removeBoard(paramBoard);
 		    if(row == 1){
 		    	System.out.println("삭제성공");
+		    	
+		    	response.setContentType("text/html; charset=UTF-8");
+		    	
+		    	PrintWriter out = response.getWriter();
+		    	 
+		    	out.println("<script>alert('게시글을 삭제하였습니다.'); location.href='boardList';</script>");
+		    	
+		    	out.flush();
 		    } else {
 		    	System.out.println("삭제실패");
+		    	
+		    	String msg = "삭제에 실패하였습니다.";
+				
+				// View
+				RequestDispatcher rd = request.getRequestDispatcher("/board/boardOne?boardNo="+boardNo+"&msg="+msg);
+				
+				rd.forward(request, response);
 		    }
-		    // View
-		    response.sendRedirect(request.getContextPath()+"/board/boardList");
 		} else {
 			String msg = "작성자만 삭제할 수 있습니다.";
-			request.setAttribute("msg", msg);
 			
 			// View
-			RequestDispatcher rd = request.getRequestDispatcher("/board/boardOne?boardNo="+boardNo);
+			RequestDispatcher rd = request.getRequestDispatcher("/board/boardOne?boardNo="+boardNo+"&msg="+msg);
 			
 			rd.forward(request, response);
-			return;
 		}
 	}
 }

@@ -46,4 +46,28 @@ public class MemberOneController extends HttpServlet {
 		
 		rd.forward(request, response);
 	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 로그인 후에만 진입가능
+		HttpSession session = request.getSession();
+		
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		if(loginMember == null) { // 로그아웃 상태
+			response.sendRedirect(request.getContextPath()+"/member/login");
+			return;
+		}
+		
+		Member member = new Member();
+		member.setMemberId(loginMember.getMemberId());
+		
+		MemberService memberService = new MemberService();
+		member = memberService.getMember(member);
+		
+		request.setAttribute("member", member);
+		
+		// View
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/memberOne.jsp");
+		
+		rd.forward(request, response);
+	}
 }

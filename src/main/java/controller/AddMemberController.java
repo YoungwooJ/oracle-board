@@ -85,11 +85,16 @@ public class AddMemberController extends HttpServlet {
 	    int row = memberService.addMember(member);
 	    if(row == 1){
 	    	System.out.println("회원가입 성공");
+	    	
+	    	String msg = "새로운 아이디로 로그인하세요.";
+			request.setAttribute("msg", msg);
+			
+			// View
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/login.jsp");
+			
+			rd.forward(request, response);
 	    } else {
 	    	System.out.println("회원가입 실패");
 	    }
-		
-		// 3. V
-		response.sendRedirect(request.getContextPath()+"/member/login");
 	}
 }

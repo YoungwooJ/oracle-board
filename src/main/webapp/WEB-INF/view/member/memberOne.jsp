@@ -82,6 +82,9 @@
 	<br>
 	<div class="container">
 		<h3>내 정보</h3>
+		<div id="msg" style="color:red;">
+			${msg}
+		</div>
 		<table class="table table-bordered">
 			<tr>
 				<th>아이디</th>

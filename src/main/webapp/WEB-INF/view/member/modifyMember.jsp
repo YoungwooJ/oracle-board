@@ -128,6 +128,7 @@
 	<div class="container">
 		<h3>내 정보</h3>
 		<div id="msg" style="color:red;">
+			${msg}
 		</div>
 		<form method="post" action="${pageContext.request.contextPath}/member/modifyMember" id="modifyForm">
 		<table class="table table-bordered">

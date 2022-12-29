@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -84,11 +86,18 @@ public class LoginController extends HttpServlet {
 		
 		if(returnMember == null) { // 로그인 실패
 			System.out.println("로그인 실패");
-			response.sendRedirect(request.getContextPath()+"/WEB-INF/view/member/login/jsp");
-			return;
+			
+			String msg = "아이디와 비밀번호를 확인하세요.";
+			request.setAttribute("msg", msg);
+			
+			// View
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/member/login.jsp");
+			
+			rd.forward(request, response);
+			
+		} else {
+			session.setAttribute("loginMember", returnMember);
+			response.sendRedirect(request.getContextPath()+"/home");
 		}
-		
-		session.setAttribute("loginMember", returnMember);
-		response.sendRedirect(request.getContextPath()+"/home");
 	}
 }

@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -94,12 +96,22 @@ public class AddBoardController extends HttpServlet {
 	    int row = boardService.addBoard(board, member);
 	    if(row == 1){
 	    	System.out.println("입력성공");
+	    	
+	    	response.setContentType("text/html; charset=UTF-8");
+	    	 
+	    	PrintWriter out = response.getWriter();
+	    	 
+	    	out.println("<script>alert('게시글이 등록되었습니다.'); location.href='boardList';</script>");
+	    	 
+	    	out.flush();
 	    } else {
 	    	System.out.println("입력실패");
+	    	
+	    	// View
+	    	response.sendRedirect(request.getContextPath()+"/board/addBoard");
 	    }
 		
-		// View
-		response.sendRedirect(request.getContextPath()+"/board/boardList");
+		
 		
 	}
 }

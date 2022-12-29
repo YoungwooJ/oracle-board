@@ -122,6 +122,7 @@
 	<div class="container">
 		<h3>회원탈퇴</h3>
 		<div id="msg" style="color:red;">
+		${msg}
 		</div>
 		<form method="post" action="${pageContext.request.contextPath}/member/removeMember" id="deleteForm">
 		<table class="table table-bordered">

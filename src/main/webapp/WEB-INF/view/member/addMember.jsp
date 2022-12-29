@@ -105,7 +105,7 @@
               <form class="bg-white rounded shadow-5-strong p-5" method="post" action="${pageContext.request.contextPath}/member/addMember" id="addForm">             
                 <h4>회원가입</h4>
 				<div>
-					<span id="msg" style="color:red;"></span>
+					<span id="msg" style="color:red;">${msg}</span>
 				</div>
                 <!-- ID input -->
                 <div class="form-outline mb-4">
