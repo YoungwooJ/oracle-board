@@ -44,7 +44,6 @@ public class ModifyMemberController extends HttpServlet {
 		MemberService memberService = new MemberService();
 		member = memberService.getMember(member);
 		
-		
 		request.setAttribute("member", member);
 		
 		// 3. V

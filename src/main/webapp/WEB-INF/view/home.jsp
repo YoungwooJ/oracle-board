@@ -84,9 +84,19 @@
 	<div class="container">
 		<div class="alert alert-primary" role="alert">${loginMember.memberName}님 환영합니다.</div>
 		
-		<div>
-			<img style="width:100%;" src="${pageContext.request.contextPath}/resources/static/img/onepiece.jpg">
-		</div>
+		<table class="table table-bordered">
+			<tr>
+				<th>설명: </th>
+				<td>
+					이번 프로젝트에서는 서비스할 수는 없지만 지금까지 배운 MVC구조로 Oracle을 사용해서 다른 DB와 SQL 쿼리문을 사용해보았습니다. 
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<img style="width:100%;" src="${pageContext.request.contextPath}/resources/static/img/onepiece.jpg">
+				</td>
+			</tr>
+		</table>
 		<br><br>
 		
 		<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/member/memberOne">내 정보</a>
