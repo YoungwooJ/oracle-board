@@ -81,15 +81,16 @@ public class RemoveMemberController extends HttpServlet {
 			memberPw = request.getParameter("memberPw");
 		}
 		
-		// System.out.println(memberPw);
-		
 		Member member = new Member();
 		member.setMemberId(loginMember.getMemberId());
 		member.setMemberPw(memberPw);
 		
-		// 2. M
+		System.out.println(member.getMemberId());
+		System.out.println(member.getMemberPw());
+		
 		MemberService memberService = new MemberService();
-	    int row = memberService.removeBoard(member);
+		
+	    int row = memberService.removeMember(member);
 	    if(row == 1){
 	    	System.out.println("회원탈퇴 성공");    	
 	    	

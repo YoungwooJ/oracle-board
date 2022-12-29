@@ -147,7 +147,9 @@ public class MemberService {
 	}
 	
 	// Remove
-	public int removeBoard(Member member) {
+	
+	// 회원탈퇴
+	public int removeMember(Member member) {
 		this.memberDao = new MemberDao();
 		Connection conn = null;
 		int row = 0;
