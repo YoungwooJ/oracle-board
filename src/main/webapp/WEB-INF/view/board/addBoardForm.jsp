@@ -10,10 +10,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 		
-	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/bootstrap.css">
-	    <link rel="stylesheet" href="../_vendor/bootstrap-icons/font/bootstrap-icons.css">
-	    <link rel="stylesheet" href="../_vendor/prismjs/themes/prism-okaidia.css">
-	    <link rel="stylesheet" href="../_assets/css/custom.min.css">
+	   	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/bootstrap.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/font/bootstrap-icons.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/themes/prism-okaidia.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/custom.min.css">
 	    <!-- Global Site Tag (gtag.js) - Google Analytics -->
 	    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
 	    <script>
@@ -63,10 +63,35 @@
 				});
 			});
 		</script>
+		<style>
+		th {
+			text-align: center;
+		}
+		table {
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+			outline: none !important;
+			border-color: #747474;
+			box-shadow: 0 0 10px #747474;
+		}
+		.container {
+			display-inline : center;
+		}
+		</style>	
 	</head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <div class="container-fluid">
+	  <div class="container">
 	    <a class="navbar-brand" href="${pageContext.request.contextPath}/home">게시판</a>
 	    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -93,38 +118,49 @@
 	      </ul>
 	      <ul class="navbar-nav ms-md-auto">
 	        <li class="nav-item">
-	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board"><i class="bi bi-github"></i> GitHub</a>
+	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board">GitHub</a>
 	        </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-	
-	<h1>게시글 입력</h1>
-	<div id="msg" style="color:red">
+	<br>
+	<div class="container">
+		<h3>게시글 입력</h3>
+		<br>
+		<div id="msg" style="color:red;">
+		</div>
+		<form method="post" action="${pageContext.request.contextPath}/board/addBoard" id="addForm">
+			<table class="table table-bordered">
+				<tr>
+					<th>제목</th>
+					<td>
+						<input type="text" class="box" id="boardTitle" name="boardTitle">
+					</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>
+						<input type="text" class="box" name="memberId" value="${member.memberId}" readonly="readonly">
+					</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td>
+						<textarea rows="5" cols="50" class="box" id="boardContent" name="boardContent"></textarea>
+					</td>
+				</tr>
+			</table>
+			<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/board/boardList">이전</a>	
+			<button style="float:right;" type="button" class="btn btn-info" id="addBtn">글입력</button>
+		</form>
 	</div>
-	<form method="post" action="${pageContext.request.contextPath}/board/addBoard" id="addForm">
-		<table border="1">
-			<tr>
-				<th>제목</th>
-				<td>
-					<input type="text" id="boardTitle" name="boardTitle">
-				</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>
-					<input type="text" name="memberId" value="${member.memberId}" readonly="readonly">
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea rows="5" cols="50" id="boardContent" name="boardContent"></textarea>
-				</td>
-			</tr>
-		</table>
-		<button type="submit" id="addBtn">글입력</button>
-	</form>
+	<br><br>
+	
+	<!--Footer-->
+	<div>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</div>
+	<!--Footer-->
 </body>
 </html>

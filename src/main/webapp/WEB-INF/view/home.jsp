@@ -11,9 +11,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 		
 	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/bootstrap.css">
-	    <link rel="stylesheet" href="../_vendor/bootstrap-icons/font/bootstrap-icons.css">
-	    <link rel="stylesheet" href="../_vendor/prismjs/themes/prism-okaidia.css">
-	    <link rel="stylesheet" href="../_assets/css/custom.min.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/font/bootstrap-icons.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/themes/prism-okaidia.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/custom.min.css">
 	    <!-- Global Site Tag (gtag.js) - Google Analytics -->
 	    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
 	    <script>
@@ -24,9 +24,31 @@
 	      gtag('config', 'UA-23019901-1');
 	    </script>
     </head>
+	<style>
+		table {
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+			outline: none !important;
+			border-color: rgb(60, 179, 113);
+			box-shadow: 0 0 10px rgb(60, 179, 113);
+		}
+		.container {
+			display-inline : center;
+		}
+	</style>    
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <div class="container-fluid">
+	  <div class="container">
 	    <a class="navbar-brand" href="#">게시판</a>
 	    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -53,18 +75,32 @@
 	      </ul>
 	      <ul class="navbar-nav ms-md-auto">
 	        <li class="nav-item">
-	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board"><i class="bi bi-github"></i> GitHub</a>
+	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board"> GitHub</a>
 	        </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-
-	<div>${loginMember.memberName}님 환영합니다.</div>
+	<div class="container">
+		<div class="alert alert-primary" role="alert">${loginMember.memberName}님 환영합니다.</div>
+		
+		<div>
+			<img style="width:100%;" src="${pageContext.request.contextPath}/resources/static/img/onepiece.jpg">
+		</div>
+		<br><br>
+		
+		<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/member/memberOne">내 정보</a>
+		<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
+		
+		<a style="float:right;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/board/boardList">게시판 바로가기</a>
+	</div>
 	
-	<a href="${pageContext.request.contextPath}/member/memberOne">내 정보</a>
-	<a href="${pageContext.request.contextPath}/member/logout">로그아웃</a>
-	<br>
-	<a href="${pageContext.request.contextPath}/board/boardList">게시판 바로가기</a>
+	<br><br>
+	
+	<!--Footer-->
+	<div>
+		<jsp:include page="../view/inc/footer.jsp"></jsp:include>
+	</div>
+	<!--Footer-->
 </body>
 </html>

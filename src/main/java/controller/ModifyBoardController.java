@@ -53,7 +53,13 @@ public class ModifyBoardController extends HttpServlet {
 			
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect(request.getContextPath()+"/board/boardOne?boardNo="+boardNo);
+			String msg = "작성자만 수정할 수 있습니다.";
+			request.setAttribute("msg", msg);
+			
+			// View
+			RequestDispatcher rd = request.getRequestDispatcher("/board/boardOne?boardNo="+boardNo);
+			
+			rd.forward(request, response);
 			return;
 		}
 	}

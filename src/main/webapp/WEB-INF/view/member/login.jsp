@@ -3,19 +3,24 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	    <meta name="description" content="">
-	    <meta name="author" content="">
+		<meta charset="UTF-8">  
 		
-	    <link href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css" rel="stylesheet">
-	    <link href="${pageContext.request.contextPath}/resources/assets/css/font-awesome.min.css" rel="stylesheet">
-	    <link href="${pageContext.request.contextPath}/resources/assets/css/style.css" rel="stylesheet">
-	    
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		
 		<title>loginForm</title>
 		<!-- 부트스트랩5 CDN -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+		<!-- Google Fonts Roboto -->
+	    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+		<!-- MDB -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/login/css/mdb.min.css" />
+		<!-- Custom styles -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/login/css/style.css" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<!-- 자바스크립트로 유효성 확인 -->
@@ -58,82 +63,92 @@
 		</script>
 	</head>
 <body>
-    <section class="form-02-main">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="_lk_de">
-              <div class="form-03-main">
-                <div class="logo">
-                  <img src="${pageContext.request.contextPath}/resources/assets/images/user.png">
-                </div>
-                <div class="form-group">
-                  <input type="email" name="email" class="form-control _ge_de_ol" type="text" placeholder="Enter Email" required="" aria-required="true">
+      <!--Main Navigation-->
+  <header>
+    <style>
+      #intro {
+        background-image: url(${pageContext.request.contextPath}/resources/static/login/img/bg.jpg);
+        height: 100vh;
+      }
+
+      /* Height for devices larger than 576px */
+      @media (min-width: 992px) {
+        #intro {
+          margin-top: -58.59px;
+        }
+      }
+
+      .navbar .nav-link {
+        color: #fff !important;
+      }
+    </style>
+
+    <!-- Background image -->
+    <div id="intro" class="bg-image shadow-2-strong">
+      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+              <form class="bg-white rounded shadow-5-strong p-5" method="post" action="${pageContext.request.contextPath}/member/login" id="loginForm">
+                <h4>로그인</h4>
+				<div>
+					<span id="msg" style="color:red;"></span>
+				</div>
+                <!-- ID input -->
+                <div class="form-outline mb-4">             
+                  <input type="text" name="memberId" id="memberId" id="form1Example1" class="form-control" />
+                  <label class="form-label" for="form1Example1">아이디</label>
                 </div>
 
-                <div class="form-group">
-                  <input type="password" name="password" class="form-control _ge_de_ol" type="text" placeholder="Enter Password" required="" aria-required="true">
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <input type="password" name="memberPw" id="memberPw" id="form1Example2" class="form-control" />
+                  <label class="form-label" for="form1Example2">비밀번호</label>
                 </div>
 
-                <div class="checkbox form-group">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="">
-                    <label class="form-check-label" for="">
-                      Remember me
-                    </label>
+                <!-- 2 column grid layout for inline styling -->
+                <div class="row mb-4">
+                  <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                      <label class="form-check-label" for="form1Example3">
+                        자동 로그인 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </label>
+                    </div>
                   </div>
-                  <a href="#">Forgot Password</a>
-                </div>
 
-                <div class="form-group">
-                  <div class="_btn_04">
-                    <a href="#">Login</a>
+                  <div class="col text-center">
+                    <!-- Simple link -->
+                    <a href="#!">ID와 비밀번호 찾기</a>
                   </div>
                 </div>
 
-                <div class="form-group nm_lk"><p>Or Login With</p></div>
-
-                <div class="form-group pt-0">
-                  <div class="_social_04">
-                    <ol>
-                      <li><i class="fa fa-facebook"></i></li>
-                      <li><i class="fa fa-twitter"></i></li>
-                      <li><i class="fa fa-google-plus"></i></li>
-                      <li><i class="fa fa-instagram"></i></li>
-                      <li><i class="fa fa-linkedin"></i></li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
+                <!-- Submit button -->            
+                <button style="float:right;" type="button" id="loginBtn" class="btn btn-primary">로그인</button>
+                <div>
+                <!-- 아이디가 없는 경우 회원가입 -->
+                <a style="float:left;" type="button" class="btn btn-primary" href="${pageContext.request.contextPath}/member/addMember">회원가입</a>
+	            </div>  
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    
-	<h1>로그인</h1>
-	<div>
-		<span id="msg" style="color:red"></span>
-	</div>
-	<form method="post" action="${pageContext.request.contextPath}/member/login" id="loginForm">
-		<table border="1">
-			<tr>
-				<th>아이디 : </th>
-				<td>
-					<input type="text" name="memberId" id="memberId">
-				</td>
-			</tr>
-			<tr>
-				<th>
-					비밀번호 : 
-				</th>
-				<td>
-					<input type="password" name="memberPw" id="memberPw">
-				</td>
-			</tr>
-		</table>
-		<a style="float:left" type="button" href="${pageContext.request.contextPath}/member/addMember">회원가입</a>
-		<button type="submit" id="loginBtn">로그인</button>
-	</form>
+    </div>
+    <!-- Background image -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Footer-->
+  <div>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
+  </div>
+  <!--Footer-->
+  
+    <!-- MDB -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/login/js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/static/login/js/script.js"></script>
 </body>
 </html>

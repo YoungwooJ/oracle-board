@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,8 +62,13 @@ public class RemoveBoardController extends HttpServlet {
 		    // View
 		    response.sendRedirect(request.getContextPath()+"/board/boardList");
 		} else {
+			String msg = "작성자만 삭제할 수 있습니다.";
+			request.setAttribute("msg", msg);
 			
-			response.sendRedirect(request.getContextPath()+"/board/boardOne?boardNo="+boardNo);
+			// View
+			RequestDispatcher rd = request.getRequestDispatcher("/board/boardOne?boardNo="+boardNo);
+			
+			rd.forward(request, response);
 			return;
 		}
 	}

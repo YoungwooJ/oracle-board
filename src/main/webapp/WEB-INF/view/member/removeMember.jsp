@@ -11,9 +11,9 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 		
 	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/bootstrap.css">
-	    <link rel="stylesheet" href="../_vendor/bootstrap-icons/font/bootstrap-icons.css">
-	    <link rel="stylesheet" href="../_vendor/prismjs/themes/prism-okaidia.css">
-	    <link rel="stylesheet" href="../_assets/css/custom.min.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/font/bootstrap-icons.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/themes/prism-okaidia.css">
+	    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/static/css/custom.min.css">
 	    <!-- Global Site Tag (gtag.js) - Google Analytics -->
 	    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23019901-1"></script>
 	    <script>
@@ -57,10 +57,35 @@
 				});
 			});
 		</script>
+		<style>
+		th {
+			text-align: center;
+		}
+		table {
+			border: 1px #BDBDBD solid;
+			font-size: .9em;
+			box-shadow: 0 2px 5px #BDBDBD;
+			width: 100%;
+			border-collapse: collapse;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		a {
+			text-decoration: none;
+		}
+		.box:hover {
+			outline: none !important;
+			border-color: #747474;
+			box-shadow: 0 0 10px #747474;
+		}
+		.container {
+			display-inline : center;
+		}
+		</style>	
 	</head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <div class="container-fluid">
+	  <div class="container">
 	    <a class="navbar-brand" href="${pageContext.request.contextPath}/home">게시판</a>
 	    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -87,38 +112,49 @@
 	      </ul>
 	      <ul class="navbar-nav ms-md-auto">
 	        <li class="nav-item">
-	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board"><i class="bi bi-github"></i> GitHub</a>
+	          <a target="_blank" rel="noopener" class="nav-link" href="https://github.com/YoungwooJ/oracle-board"> GitHub</a>
 	        </li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
-	
-	<h1>회원탈퇴</h1>
-	<div id="msg" style="color:red">
+	<br>
+	<div class="container">
+		<h3>회원탈퇴</h3>
+		<div id="msg" style="color:red;">
+		</div>
+		<form method="post" action="${pageContext.request.contextPath}/member/removeMember" id="deleteForm">
+		<table class="table table-bordered">
+			<tr>
+				<th>아이디</th>
+				<td>${member.memberId}</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>${member.memberName}</td>
+			</tr>
+			<tr>
+				<th>가입날짜</th>
+				<td>${member.createdate}</td>
+			</tr>
+			<tr>
+				<th>비밀번호 입력</th>
+				<td>
+					<input class="box" type="password" id="memberPw" name="memberPw">
+				</td>
+			</tr>
+		</table>
+		<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/member/memberOne">이전</a>
+		<button style="float:right;" class="btn btn-danger" type="button" id="deleteBtn">삭제</button>
+		</form>
 	</div>
-	<form method="post" action="${pageContext.request.contextPath}/member/removeMember" id="deleteForm">
-	<table border="1">
-		<tr>
-			<th>아이디</th>
-			<td>${member.memberId}</td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td>${member.memberName}</td>
-		</tr>
-		<tr>
-			<th>가입날짜</th>
-			<td>${member.createdate}</td>
-		</tr>
-		<tr>
-			<th>비밀번호 입력</th>
-			<td>
-				<input type="password" id="memberPw" name="memberPw">
-			</td>
-		</tr>
-	</table>
-	<button type="submit" id="deleteBtn">삭제</button>
-	</form>
+	
+	<br><br>
+	
+	<!--Footer-->
+	<div>
+		<jsp:include page="../inc/footer.jsp"></jsp:include>
+	</div>
+	<!--Footer-->	
 </body>
 </html>
