@@ -12,6 +12,32 @@ import vo.Member;
 public class BoardService {
 	private BoardDao boardDao;
 	// Get
+	// 전체 게시글 갯수 구하기
+	public int getBoardCount(String search){
+		int count = 0;
+		Connection conn = null;
+		try {
+			conn = DBUtil.getConnection();
+			boardDao = new BoardDao();
+			count = boardDao.selectBoardCount(conn, search);
+			conn.commit(); // DBUtil.class에서 conn.setAutoCommit(false);
+		} catch(Exception e) {
+			try {
+				conn.rollback(); // DBUtil.class에서 conn.setAutoCommit(false);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
+	
 	public ArrayList<Board> getBoardListByPage(int currentPage, int rowPerPage, String search){
 		/*
 		 	1) connection 생성 <- DBUtil.class

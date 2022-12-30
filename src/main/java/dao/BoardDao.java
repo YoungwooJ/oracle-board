@@ -11,6 +11,34 @@ import vo.Member;
 
 public class BoardDao {
 	// SELECT
+	
+	// 전체 게시글 갯수 구하기
+	public int selectBoardCount(Connection conn, String search) throws Exception {
+		int count = 0;
+		PreparedStatement stmt = null;
+		if(search == null || search.equals("")) {
+			String sql = "SELECT COUNT(*) count"
+					+ "	  FROM (SELECT rownum rnum, board_no, board_title, createdate"
+					+ "			FROM (SELECT board_no, board_title, createdate"
+					+ "				  FROM board ORDER BY board_no DESC))";
+			stmt = conn.prepareStatement(sql);
+		} else {
+			String sql = "SELECT COUNT(*) count"
+					+ "	  FROM (SELECT rownum rnum, board_no, board_title, createdate"
+					+ "			FROM (SELECT board_no, board_title, createdate"
+					+ "				  FROM board ORDER BY board_no DESC))"
+					+ "	  WHERE board_title LIKE ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%"+search+"%");
+		}
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			count = rs.getInt("count");
+		}
+		
+		return count;
+	}
+	
 	// 검색 추가
 	public ArrayList<Board> selectBoardListByPage(Connection conn, int beginRow, int endRow, String search) throws Exception{
 		ArrayList<Board> list = new ArrayList<Board>();

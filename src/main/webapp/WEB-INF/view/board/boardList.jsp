@@ -147,8 +147,30 @@
 		</table>
 		<!-- 페이징 코드 -->
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a>
-			<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a>
+		<c:choose>
+			<c:when test="${serach == null || empty search}">
+				<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=1">처음</a></li>
+				<c:if test="${currentPage > 1}">
+					<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}">이전</a></li>
+				</c:if>
+				<li class="page-item"><span class="page-link text-success">${currentPage}</span></li>
+				<c:if test="${currentPage < lastPage}">
+					<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}">다음</a></li>
+				</c:if>
+				<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${lastPage}">마지막</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=1&search=${search}">처음</a>
+				<c:if test="${currentPage > 1}">
+					<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage-1}&search=${search}">이전</a>
+				</c:if>
+				<li class="page-item"><span class="page-link text-success">${currentPage}</span></li>
+				<c:if test="${currentPage < lastPage}">
+					<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${currentPage+1}&search=${search}">다음</a>
+				</c:if>
+				<li class="page-item"><a class="page-link text-success" href="${pageContext.request.contextPath}/board/boardList?rowPerPage=${rowPerPage}&currentPage=${lastPage}&search=${search}">마지막</a>
+			</c:otherwise>
+		</c:choose>	
 		</ul>
 		<a style="float:left;" type="button" class="btn btn-success" href="${pageContext.request.contextPath}/home">이전</a>
 		<a style="float:right;" type="button" class="btn btn-info" href="${pageContext.request.contextPath}/board/addBoard?memberId=${member.memberId}">게시글 입력</a>

@@ -42,6 +42,7 @@ public class BoardListController extends HttpServlet {
 		// 검색 기능
 		request.setCharacterEncoding("UTF-8"); // 한글 처리
 		String search = request.getParameter("search");
+		System.out.println("search : " + search);
 		
 		Member member = new Member();
 		member.setMemberId(loginMember.getMemberId());
@@ -49,9 +50,18 @@ public class BoardListController extends HttpServlet {
 		this.boardService = new BoardService();
 		ArrayList<Board> list = boardService.getBoardListByPage(currentPage, rowPerPage, search);
 		
+		// 마지막 페이지 구하기
+		int cnt = 0;
+		cnt = boardService.getBoardCount(search);
+		
+		int lastPage = (int)Math.ceil((double)cnt / (double)rowPerPage);
+		// System.out.println("cnt : " + cnt);
+		// System.out.println("lastPage : " + lastPage);
+		
 		request.setAttribute("boardList", list);
 		request.setAttribute("currentPage", currentPage); // view에서 필요
 		request.setAttribute("rowPerPage", rowPerPage); // view에서 필요
+		request.setAttribute("lastPage", lastPage); // view에서 필요
 		
 		request.setAttribute("search", search);
 		request.setAttribute("member", member);
