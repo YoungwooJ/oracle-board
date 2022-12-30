@@ -93,7 +93,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<img style="width:100%;" src="${pageContext.request.contextPath}/resources/static/img/onepiece.jpg">
+					<img style="width:100%;" src="${pageContext.request.contextPath}/resources/static/img/oracle.jpg">
 				</td>
 			</tr>
 		</table>
