@@ -96,13 +96,13 @@
 				</div>
                 <!-- ID input -->
                 <div class="form-outline mb-4">             
-                  <input type="text" name="memberId" id="memberId" id="form1Example1" class="form-control" />
+                  <input type="text" name="memberId" id="memberId" value="goodee" id="form1Example1" class="form-control" />
                   <label class="form-label" for="form1Example1">아이디</label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input type="password" name="memberPw" id="memberPw" id="form1Example2" class="form-control" />
+                  <input type="password" name="memberPw" id="memberPw" value="1234" id="form1Example2" class="form-control" />
                   <label class="form-label" for="form1Example2">비밀번호</label>
                 </div>
 

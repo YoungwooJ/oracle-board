@@ -9,7 +9,7 @@ public class DBUtil {
 	public static Connection getConnection() throws Exception {
 		String driver	= "oracle.jdbc.driver.OracleDriver";
 		String dbUrl	= "jdbc:oracle:thin:@localhost:1521:xe";
-		String dbUser	= "gdj58";
+		String dbUser	= "system";
 		String dbPw		= "java1234";
 		Class.forName(driver); // 외부 드라이브 로딩
 		Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw); // db 연결
